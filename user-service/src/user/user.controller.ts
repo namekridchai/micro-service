@@ -11,4 +11,40 @@ export class UserController {
     console.log('accept request')
     return this.userService.findAll();
   }
+
+  @MessagePattern({ cmd: 'create-user' })
+  async create_user(
+    data:{name:String,
+      age:BigInteger,
+      password:String,
+  }
+    
+  ): Promise<User> {
+    const user = await this.userService.create(data.name,data.age,data.password)
+    return user
+  }
+
+  @MessagePattern({ cmd: 'update-user' })
+  async update_user(
+    param:{
+         
+                    name:String,
+                    age:BigInteger,
+                    password:String,
+                  
+            id:string
+    }
+  ) {
+    const user = await this.userService.update(param)
+    return user
+  }
+
+  @MessagePattern({ cmd: 'delete-user' })
+  async delete_user(
+    id:string
+  ) {
+    const user = await this.userService.delete(id)
+    return user
+  }
+
 }

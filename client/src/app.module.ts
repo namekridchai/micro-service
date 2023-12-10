@@ -13,7 +13,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
               options: { port: 3001 },
             },
             {
-              name: 'STRING_SERVICE',
+              name: 'PRODUCT_SERVICE',
               transport: Transport.TCP,
               options: { port: 3002 },
             },
