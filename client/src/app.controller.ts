@@ -9,6 +9,8 @@ export class AppController {
    private userService: ClientProxy,
    @Inject('PRODUCT_SERVICE')
    private productService: ClientProxy,
+   @Inject('ORDER_SERVICE')
+   private orderService: ClientProxy,
  ) {}
 
  @Get('user')
@@ -68,6 +70,35 @@ export class AppController {
  ) {
  
    return this.productService.send({ cmd: 'delete-product' }, id);
+ }
+
+ @Get('order')
+ get_all_order() {
+   console.log('request incoming')
+   return this.orderService.send({ cmd: 'order-all' },[]);
+ }
+
+ @Post('order')
+  create_order(@Body() { data }) { 
+   console.log(data)
+   console.log('create order request incoming')
+   return this.orderService.send({ cmd: 'create-order' },data);
+ }
+
+ @Patch('order/:id')
+ update_order(@Body() { data },
+      @Param('id') id :String     
+ ) {
+  console.log({...data,id:id})
+   return this.orderService.send({ cmd: 'update-order' }, {...data,id:id});
+ }
+
+ @Delete('order/:id')
+ delete_order(
+      @Param('id') id :String     
+ ) {
+ 
+   return this.orderService.send({ cmd: 'delete-order' }, id);
  }
 
 }
