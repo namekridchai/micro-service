@@ -1,0 +1,15 @@
+{
+  "name": "micro-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/microservices": "^10.2.10",
+    "save": "^2.9.0"
+  }
+}
